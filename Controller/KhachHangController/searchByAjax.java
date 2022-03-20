@@ -59,21 +59,29 @@ public class searchByAjax extends HttpServlet {
 				}
 			}else {
 				ds = bo.SearchBO(search);
-				for(DienThoaibean o : ds) {
-					out.println("<div class=\"col item\">\r\n"
-							+ "                    <div class=\"thumbnail product-item\">\r\n"
-							+ "                        <a href=\"product?id="+o.getMaDienThoai()+"\">\r\n"
-							+ "                            <img src=\""+o.getAnh()+"\" style=\"height: 160px\" alt=\"\">\r\n"
-							+ "                            <div class=\"caption\">\r\n"
-							+ "                                <p class=\"title-item\">"+o.getTenDienThoai()+"</p>\r\n"
-							+ "                                <p class=\"author-item\">Hãng: "+o.getMaNSX()+"</p>\r\n"
-							+ "                                <p class=\"price-item\">Giá: "+o.getGia()+" ₫</p>\r\n"
-							+ "                            </div>\r\n"
-							+ "                        </a>\r\n"
-							+ "                        <button class=\"btn btn-primary\" role=\"button\" onclick=\"ThemHang('"+o.getMaDienThoai()+"', '"+o.getTenDienThoai()+"', '"+o.getGia()+"', '"+o.getAnh()+"')\">Thêm vào giỏ hàng</button>\r\n"
-							+ "                        <span>Giảm 10%</span>\r\n"
-							+ "                    </div>\r\n"
-							+ "                </div>");
+				if(ds.size() != 0) {
+					for(DienThoaibean o : ds) {
+						out.println("<div class=\"col item\">\r\n"
+								+ "                    <div class=\"thumbnail product-item\">\r\n"
+								+ "                        <a href=\"product?id="+o.getMaDienThoai()+"\">\r\n"
+								+ "                            <img src=\""+o.getAnh()+"\" style=\"height: 160px\" alt=\"\">\r\n"
+								+ "                            <div class=\"caption\">\r\n"
+								+ "                                <p class=\"title-item\">"+o.getTenDienThoai()+"</p>\r\n"
+								+ "                                <p class=\"author-item\">Hãng: "+o.getMaNSX()+"</p>\r\n"
+								+ "                                <p class=\"price-item\">Giá: "+o.getGia()+" ₫</p>\r\n"
+								+ "                            </div>\r\n"
+								+ "                        </a>\r\n"
+								+ "                        <button class=\"btn btn-primary\" role=\"button\" onclick=\"ThemHang('"+o.getMaDienThoai()+"', '"+o.getTenDienThoai()+"', '"+o.getGia()+"', '"+o.getAnh()+"')\">Thêm vào giỏ hàng</button>\r\n"
+								+ "                        <span>Giảm 10%</span>\r\n"
+								+ "                    </div>\r\n"
+								+ "                </div>");
+					}
+				}else {
+					out.print("<div class=\"row\" style=\"width: 100%\">\r\n"
+							+ "					<p\r\n"
+							+ "						style=\"display: flex; align-items: center; justify-content: center; flex: 1; font-size: 70px;\">Không\r\n"
+							+ "						tìm thấy kết quả</p>\r\n"
+							+ "				</div>");
 				}
 			}
 
